@@ -27,7 +27,7 @@ public class App extends Application {
         button.setOnAction(actionEvent -> {
             long timestamp = System.currentTimeMillis();
 
-            listView.getSelectionModel().selectRange(0, itemsCount - 1);
+            listView.getSelectionModel().selectRange(0, itemsCount - 1); // <== Here `selectRange` take a lot of time to select items
 
             String message = String.format("Selection time: %d seconds", (System.currentTimeMillis() - timestamp) / 1000);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, message);
