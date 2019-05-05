@@ -695,11 +695,14 @@ abstract class MultipleSelectionModelBase<T> extends MultipleSelectionModel<T> {
                 return;
             }
 
-            _beginChange();
             bitset.set(index);
-            int indicesIndex = indexOf(index);
-            _nextAdd(indicesIndex, indicesIndex + 1);
-            _endChange();
+
+            if (!isAtomic()) {
+                _beginChange();
+                int indicesIndex = indexOf(index);
+                _nextAdd(indicesIndex, indicesIndex + 1);
+                _endChange();
+            }
         }
 
         private boolean isValidIndex(int index) {
